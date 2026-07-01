@@ -1,0 +1,1130 @@
+<title>Báo Cáo Khảo Sát D-1 | 23–29/06/2026</title>
+<style>
+:root {
+  --navy: #1B3A6B;
+  --teal: #0E7490;
+  --green: #16A34A;
+  --amber: #D97706;
+  --red: #DC2626;
+  --surface: #F8FAFC;
+  --border: #E2E8F0;
+  --muted: #64748B;
+  --card-bg: #FFFFFF;
+  --text: #0F172A;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       background: var(--surface); color: var(--text); font-size: 14px; }
+
+/* ─── Header ─── */
+.header { background: linear-gradient(135deg, #1B3A6B 0%, #0E7490 100%);
+           color: #fff; padding: 28px 32px 24px; }
+.header-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+.header-sub { font-size: 13px; opacity: .75; margin-top: 4px; }
+.kpi-row { display: flex; gap: 20px; margin-top: 22px; flex-wrap: wrap; }
+.kpi { background: rgba(255,255,255,.12); border-radius: 10px;
+        padding: 14px 18px; min-width: 120px; }
+.kpi-val { font-size: 28px; font-weight: 800; line-height: 1; }
+.kpi-label { font-size: 11px; opacity: .8; margin-top: 4px; letter-spacing: .3px; text-transform: uppercase; }
+.kpi.highlight { background: rgba(22,163,74,.25); border: 1px solid rgba(22,163,74,.4); }
+.kpi.warn { background: rgba(220,38,38,.25); border: 1px solid rgba(220,38,38,.4); }
+
+/* ─── Main ─── */
+.main { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+
+/* ─── Section ─── */
+.section { background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 12px; padding: 20px 24px; margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.section-title { font-size: 15px; font-weight: 700; color: var(--navy);
+                  margin-bottom: 16px; padding-bottom: 10px;
+                  border-bottom: 2px solid var(--border); display: flex;
+                  align-items: center; gap: 8px; }
+.section-title .count { font-size: 12px; background: #EEF2FF; color: #4F46E5;
+                          border-radius: 20px; padding: 1px 8px; font-weight: 600; }
+
+/* ─── Daily table ─── */
+.day-table { width: 100%; border-collapse: collapse; }
+.day-table th { padding: 8px 10px; text-align: left; font-size: 11px;
+                 text-transform: uppercase; letter-spacing: .4px; color: var(--muted);
+                 border-bottom: 2px solid var(--border); }
+.day-table td { padding: 10px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.day-table tr:last-child td { border-bottom: none; }
+.day-table tr:hover td { background: #F8FAFC; }
+.day-col { min-width: 120px; }
+.num-col { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.urgent-col { color: var(--red); font-weight: 700; }
+.spark-col { width: 200px; }
+.spark-bar { height: 10px; border-radius: 5px; overflow: hidden; background: #F1F5F9;
+              display: flex; }
+.spark-seg { height: 100%; transition: width .3s; }
+.rate-ok { color: var(--green); font-weight: 700; }
+.rate-mid { color: var(--amber); font-weight: 700; }
+.rate-low { color: var(--red); font-weight: 700; }
+.warn-badge { background: #FEF9C3; color: #92400E; font-size: 10px; font-weight: 600;
+               border-radius: 4px; padding: 1px 5px; margin-left: 6px; }
+
+/* ─── Button bars ─── */
+.btn-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.btn-label { min-width: 240px; font-size: 13px; color: var(--text); }
+.btn-track { flex: 1; height: 14px; background: #F1F5F9; border-radius: 7px; overflow: hidden; }
+.btn-fill { height: 100%; border-radius: 7px; transition: width .3s; }
+.btn-count { min-width: 80px; text-align: right; font-size: 13px; font-weight: 600;
+              font-variant-numeric: tabular-nums; }
+.btn-pct { color: var(--muted); font-weight: 400; font-size: 12px; }
+
+/* ─── Nhom table ─── */
+.nhom-table { width: 100%; border-collapse: collapse; }
+.nhom-table th { padding: 7px 10px; text-align: right; font-size: 11px;
+                  text-transform: uppercase; letter-spacing: .4px; color: var(--muted);
+                  border-bottom: 2px solid var(--border); }
+.nhom-table th:first-child, .nhom-table th:nth-child(2) { text-align: left; }
+.nhom-table td { padding: 8px 10px; border-bottom: 1px solid #F1F5F9; vertical-align: middle; }
+.nhom-table tr:last-child td { border-bottom: none; }
+.nhom-table tr:hover td { background: #F8FAFC; }
+.nhom-name { color: var(--muted); font-size: 12px; }
+.nhom-badge { display: inline-block; background: #EEF2FF; color: #3730A3;
+               border-radius: 5px; padding: 2px 7px; font-size: 12px; font-weight: 700;
+               letter-spacing: .3px; }
+.nhom-badge.sm { font-size: 10px; padding: 1px 5px; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 700; }
+.warn-text { color: var(--amber); font-weight: 600; }
+
+/* ─── Salon table ─── */
+.salon-table { width: 100%; border-collapse: collapse; }
+.salon-table th { padding: 7px 10px; text-align: right; font-size: 11px;
+                   text-transform: uppercase; letter-spacing: .4px; color: var(--muted);
+                   border-bottom: 2px solid var(--border); }
+.salon-table th:nth-child(2) { text-align: left; }
+.salon-table td { padding: 8px 10px; border-bottom: 1px solid #F1F5F9; }
+.salon-table tr:last-child td { border-bottom: none; }
+.salon-table tr:hover td { background: #F8FAFC; }
+.rank-col { color: var(--muted); font-size: 12px; }
+
+/* ─── Urgency cards ─── */
+.urg-day-header { font-size: 13px; font-weight: 700; color: var(--navy);
+                   padding: 10px 0 6px; margin-top: 10px;
+                   border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+.urg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+             gap: 12px; margin-bottom: 10px; }
+.urg-card { border-radius: 10px; padding: 14px; border: 1px solid; }
+.urg-card.urgent { border-color: #FECACA; background: #FFF5F5; }
+.urg-card.warn    { border-color: #FED7AA; background: #FFFBF5; }
+.uc-top { display: flex; justify-content: space-between; align-items: flex-start;
+           margin-bottom: 6px; gap: 8px; }
+.uc-name { font-weight: 700; font-size: 15px; }
+.uc-info { font-size: 12px; color: var(--muted); margin-bottom: 8px;
+            display: flex; gap: 12px; flex-wrap: wrap; }
+.uc-sdt { font-family: monospace; }
+.uc-btn { font-size: 12px; font-weight: 600; border-radius: 6px;
+           padding: 4px 10px; display: inline-block; margin-bottom: 8px; }
+.uc-cskh { margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(0,0,0,.1);
+             font-size: 12px; }
+.cskh-row { display: flex; gap: 6px; align-items: flex-start; margin-top: 3px; flex-wrap: wrap; }
+.cskh-label { color: var(--muted); white-space: nowrap; font-weight: 600; min-width: 56px; }
+.cskh-ok { color: #16A34A; font-weight: 600; }
+.cskh-miss { color: #D97706; font-weight: 600; }
+.cskh-detail { color: var(--text); line-height: 1.4; }
+.cskh-book { color: #4F46E5; font-weight: 600; }
+.cskh-pending { color: var(--muted); font-style: italic; }
+
+/* ─── Legend ─── */
+.legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── Note ─── */
+.note-box { background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 8px;
+             padding: 10px 14px; font-size: 12px; color: #0369A1; margin-bottom: 16px; }
+.note-box strong { font-weight: 700; }
+
+/* ─── Footer ─── */
+.footer { text-align: center; color: var(--muted); font-size: 12px; padding: 30px 0 20px; }
+</style>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-title">Báo Cáo Khảo Sát Hài Lòng D-1</div>
+  <div class="header-sub">Tuần 23–29/06/2026 · 7 ngày · Cập nhật 01/07/2026</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-val">15,941</div>
+      <div class="kpi-label">Khách gửi D-1</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">652</div>
+      <div class="kpi-label">Phản hồi</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">4.09%</div>
+      <div class="kpi-label">Tỉ lệ phản hồi</div>
+    </div>
+    <div class="kpi highlight">
+      <div class="kpi-val">81.3%</div>
+      <div class="kpi-label">Tóc ổn · Hài lòng</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kpi-val">33</div>
+      <div class="kpi-label">Cần xử lý</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- KẾT QUẢ THEO NGÀY -->
+<div class="section">
+  <div class="section-title">📅 Kết Quả Theo Ngày</div>
+  <div class="note-box">
+    <strong>Lưu ý:</strong> Ngày 25/06 và 26/06 tỉ lệ phản hồi rất thấp (&lt;0.5%) do chiến dịch gửi chậm
+    (Ngày 27+28 gộp gửi ngày 29/06, còn Ngày 25+26 gửi đúng ngày nhưng khách ít phản hồi).
+    Dữ liệu Ngày 27 lấy từ file _Temp (không có thông tin nhóm khách).
+  </div>
+  <table class="day-table">
+    <thead>
+      <tr>
+        <th>Ngày dịch vụ</th>
+        <th class="num-col">Khách gửi</th>
+        <th class="num-col">Phản hồi</th>
+        <th class="num-col">Tỉ lệ</th>
+        <th class="num-col">% Hài lòng</th>
+        <th>Phân bổ phản hồi</th>
+        <th class="num-col">Cần xử lý</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td class="day-col"><strong>Ngày 23/06</strong></td>
+          <td class="num-col">1,727</td>
+          <td class="num-col">73</td>
+          <td class="num-col"><span class="rate-ok">4.23%</span></td>
+          <td class="num-col">79.5%</td>
+          <td class="spark-col"><div class="spark-bar"><div class="spark-seg" style="width:79.5%;background:#16A34A;min-width:2px" title="Tóc ổn: 58 (79.5%)"></div><div class="spark-seg" style="width:6.8%;background:#CA8A04;min-width:2px" title="Theo dõi: 5 (6.8%)"></div><div class="spark-seg" style="width:9.6%;background:#2563EB;min-width:2px" title="Chưa biết tạo kiểu: 7 (9.6%)"></div><div class="spark-seg" style="width:1.4%;background:#EA580C;min-width:2px" title="Muốn chỉnh: 1 (1.4%)"></div><div class="spark-seg" style="width:2.7%;background:#DC2626;min-width:2px" title="Có vấn đề: 2 (2.7%)"></div></div></td>
+          <td class="num-col urgent-col">3</td>
+        </tr>
+        <tr>
+          <td class="day-col"><strong>Ngày 24/06</strong></td>
+          <td class="num-col">2,271</td>
+          <td class="num-col">142</td>
+          <td class="num-col"><span class="rate-ok">6.25%</span></td>
+          <td class="num-col">81.7%</td>
+          <td class="spark-col"><div class="spark-bar"><div class="spark-seg" style="width:81.7%;background:#16A34A;min-width:2px" title="Tóc ổn: 116 (81.7%)"></div><div class="spark-seg" style="width:7.7%;background:#CA8A04;min-width:2px" title="Theo dõi: 11 (7.7%)"></div><div class="spark-seg" style="width:3.5%;background:#2563EB;min-width:2px" title="Chưa biết tạo kiểu: 5 (3.5%)"></div><div class="spark-seg" style="width:3.5%;background:#EA580C;min-width:2px" title="Muốn chỉnh: 5 (3.5%)"></div><div class="spark-seg" style="width:3.5%;background:#DC2626;min-width:2px" title="Có vấn đề: 5 (3.5%)"></div></div></td>
+          <td class="num-col urgent-col">10</td>
+        </tr>
+        <tr>
+          <td class="day-col"><strong>Ngày 25/06</strong><span class="warn-badge">⚠ Tỉ lệ rất thấp</span></td>
+          <td class="num-col">1,927</td>
+          <td class="num-col">6</td>
+          <td class="num-col"><span class="rate-low">0.31%</span></td>
+          <td class="num-col">100.0%</td>
+          <td class="spark-col"><div class="spark-bar"><div class="spark-seg" style="width:100.0%;background:#16A34A;min-width:2px" title="Tóc ổn: 6 (100.0%)"></div><div class="spark-seg" style="width:0.0%;background:#CA8A04;min-width:0" title="Theo dõi: 0 (0.0%)"></div><div class="spark-seg" style="width:0.0%;background:#2563EB;min-width:0" title="Chưa biết tạo kiểu: 0 (0.0%)"></div><div class="spark-seg" style="width:0.0%;background:#EA580C;min-width:0" title="Muốn chỉnh: 0 (0.0%)"></div><div class="spark-seg" style="width:0.0%;background:#DC2626;min-width:0" title="Có vấn đề: 0 (0.0%)"></div></div></td>
+          <td class="num-col urgent-col">—</td>
+        </tr>
+        <tr>
+          <td class="day-col"><strong>Ngày 26/06</strong><span class="warn-badge">⚠ Tỉ lệ rất thấp</span></td>
+          <td class="num-col">2,225</td>
+          <td class="num-col">5</td>
+          <td class="num-col"><span class="rate-low">0.22%</span></td>
+          <td class="num-col">100.0%</td>
+          <td class="spark-col"><div class="spark-bar"><div class="spark-seg" style="width:100.0%;background:#16A34A;min-width:2px" title="Tóc ổn: 5 (100.0%)"></div><div class="spark-seg" style="width:0.0%;background:#CA8A04;min-width:0" title="Theo dõi: 0 (0.0%)"></div><div class="spark-seg" style="width:0.0%;background:#2563EB;min-width:0" title="Chưa biết tạo kiểu: 0 (0.0%)"></div><div class="spark-seg" style="width:0.0%;background:#EA580C;min-width:0" title="Muốn chỉnh: 0 (0.0%)"></div><div class="spark-seg" style="width:0.0%;background:#DC2626;min-width:0" title="Có vấn đề: 0 (0.0%)"></div></div></td>
+          <td class="num-col urgent-col">—</td>
+        </tr>
+        <tr>
+          <td class="day-col"><strong>Ngày 27/06</strong></td>
+          <td class="num-col">2,753</td>
+          <td class="num-col">161</td>
+          <td class="num-col"><span class="rate-ok">5.85%</span></td>
+          <td class="num-col">80.7%</td>
+          <td class="spark-col"><div class="spark-bar"><div class="spark-seg" style="width:80.7%;background:#16A34A;min-width:2px" title="Tóc ổn: 130 (80.7%)"></div><div class="spark-seg" style="width:7.5%;background:#CA8A04;min-width:2px" title="Theo dõi: 12 (7.5%)"></div><div class="spark-seg" style="width:7.5%;background:#2563EB;min-width:2px" title="Chưa biết tạo kiểu: 12 (7.5%)"></div><div class="spark-seg" style="width:3.7%;background:#EA580C;min-width:2px" title="Muốn chỉnh: 6 (3.7%)"></div><div class="spark-seg" style="width:0.6%;background:#DC2626;min-width:2px" title="Có vấn đề: 1 (0.6%)"></div></div></td>
+          <td class="num-col urgent-col">7</td>
+        </tr>
+        <tr>
+          <td class="day-col"><strong>Ngày 28/06</strong></td>
+          <td class="num-col">3,213</td>
+          <td class="num-col">202</td>
+          <td class="num-col"><span class="rate-ok">6.29%</span></td>
+          <td class="num-col">83.2%</td>
+          <td class="spark-col"><div class="spark-bar"><div class="spark-seg" style="width:83.2%;background:#16A34A;min-width:2px" title="Tóc ổn: 168 (83.2%)"></div><div class="spark-seg" style="width:4.5%;background:#CA8A04;min-width:2px" title="Theo dõi: 9 (4.5%)"></div><div class="spark-seg" style="width:7.4%;background:#2563EB;min-width:2px" title="Chưa biết tạo kiểu: 15 (7.4%)"></div><div class="spark-seg" style="width:2.0%;background:#EA580C;min-width:2px" title="Muốn chỉnh: 4 (2.0%)"></div><div class="spark-seg" style="width:3.0%;background:#DC2626;min-width:2px" title="Có vấn đề: 6 (3.0%)"></div></div></td>
+          <td class="num-col urgent-col">10</td>
+        </tr>
+        <tr>
+          <td class="day-col"><strong>Ngày 29/06</strong></td>
+          <td class="num-col">1,825</td>
+          <td class="num-col">62</td>
+          <td class="num-col"><span class="rate-mid">3.4%</span></td>
+          <td class="num-col">75.8%</td>
+          <td class="spark-col"><div class="spark-bar"><div class="spark-seg" style="width:75.8%;background:#16A34A;min-width:2px" title="Tóc ổn: 47 (75.8%)"></div><div class="spark-seg" style="width:6.5%;background:#CA8A04;min-width:2px" title="Theo dõi: 4 (6.5%)"></div><div class="spark-seg" style="width:12.9%;background:#2563EB;min-width:2px" title="Chưa biết tạo kiểu: 8 (12.9%)"></div><div class="spark-seg" style="width:1.6%;background:#EA580C;min-width:2px" title="Muốn chỉnh: 1 (1.6%)"></div><div class="spark-seg" style="width:3.2%;background:#DC2626;min-width:2px" title="Có vấn đề: 2 (3.2%)"></div></div></td>
+          <td class="num-col urgent-col">3</td>
+        </tr>
+    </tbody>
+  </table>
+  <div class="legend" style="margin-top:14px;margin-bottom:0">
+    <div class="legend-item"><div class="legend-dot" style="background:#16A34A"></div>Tóc ổn, anh đang rất thích</div><div class="legend-item"><div class="legend-dot" style="background:#CA8A04"></div>Tóc chưa quen, anh theo dõi thêm</div><div class="legend-item"><div class="legend-dot" style="background:#2563EB"></div>Ổn, anh chưa biết tạo kiểu</div><div class="legend-item"><div class="legend-dot" style="background:#EA580C"></div>Anh muốn chỉnh thêm cho vừa ý</div><div class="legend-item"><div class="legend-dot" style="background:#DC2626"></div>Tóc có vấn đề rõ, cần sửa gấp</div>
+  </div>
+</div>
+
+<!-- PHÂN BỐ PHẢN HỒI TỔNG HỢP -->
+<div class="section">
+  <div class="section-title">📊 Phân Bổ Phản Hồi Tổng Hợp
+    <span class="count">652 phản hồi</span>
+  </div>
+  
+        <div class="btn-bar-row">
+          <div class="btn-label">Tóc ổn, anh đang rất thích</div>
+          <div class="btn-track">
+            <div class="btn-fill" style="width:81.3%;background:#16A34A"></div>
+          </div>
+          <div class="btn-count">530 <span class="btn-pct">(81.3%)</span></div>
+        </div>
+        <div class="btn-bar-row">
+          <div class="btn-label">Ổn, anh chưa biết tạo kiểu</div>
+          <div class="btn-track">
+            <div class="btn-fill" style="width:7.2%;background:#2563EB"></div>
+          </div>
+          <div class="btn-count">47 <span class="btn-pct">(7.2%)</span></div>
+        </div>
+        <div class="btn-bar-row">
+          <div class="btn-label">Tóc chưa quen, anh theo dõi thêm</div>
+          <div class="btn-track">
+            <div class="btn-fill" style="width:6.3%;background:#CA8A04"></div>
+          </div>
+          <div class="btn-count">41 <span class="btn-pct">(6.3%)</span></div>
+        </div>
+        <div class="btn-bar-row">
+          <div class="btn-label">Tóc có vấn đề rõ, cần sửa gấp</div>
+          <div class="btn-track">
+            <div class="btn-fill" style="width:2.6%;background:#DC2626"></div>
+          </div>
+          <div class="btn-count">17 <span class="btn-pct">(2.6%)</span></div>
+        </div>
+        <div class="btn-bar-row">
+          <div class="btn-label">Anh muốn chỉnh thêm cho vừa ý</div>
+          <div class="btn-track">
+            <div class="btn-fill" style="width:2.6%;background:#EA580C"></div>
+          </div>
+          <div class="btn-count">17 <span class="btn-pct">(2.6%)</span></div>
+        </div>
+</div>
+
+<!-- CẦN XỬ LÝ -->
+<div class="section">
+  <div class="section-title">🚨 Khách Cần Xử Lý
+    <span class="count">33 khách</span>
+  </div>
+  <div class="note-box" style="margin-bottom:16px">
+    Danh sách khách chọn <strong>"Anh muốn chỉnh thêm"</strong> hoặc
+    <strong>"Tóc có vấn đề rõ, cần sửa gấp"</strong>. CSKH gọi mời đến bảo hành.
+  </div>
+  <div class="urg-day-header">Phản hồi 24/06/2026 — 2 khách</div><div class="urg-grid">
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Duy</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0937328393</span>
+                <span class="uc-salon">📍 406 TNM VT</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">ok, chiều nay 6h qua bảo hành</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_đã book đc lịch bảo hành cho khách</span></div><div class="cskh-row"><span class="cskh-label">Lịch book:</span><span class="cskh-book">18h 29/06/2026</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">duc</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0398976222</span>
+                <span class="uc-salon">📍 382 NT</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">tóc ngắn tủn rồi không sửa được đâu, cskh nói chính sách sửa 7 ngày đến đó tóc cũng ra rồi mời anh ghé lại nhưng khách từ chối bảo không cần đâu</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div></div><div class="urg-day-header">Phản hồi 25/06/2026 — 9 khách</div><div class="urg-grid">
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">CHÂU</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0909021904</span>
+                <span class="uc-salon">📍 99 Tân Sơn Nhì</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">BÙI VĂN ĐIỀN</div>
+                <span class="nhom-badge sm">C12W</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0981678501</span>
+                <span class="uc-salon">📍 113/7C Lý Thường kiệt</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">thôi không cần đâu em, anh đã qua quán quen anh sửa rồi, nhưng bạn đó hớt hơi tệ đó</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Lộc</div>
+                <span class="nhom-badge sm">MQTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0869920573</span>
+                <span class="uc-salon">📍 190 Hòa Bình</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">VÕ QUỐC VIỆT</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0396102281</span>
+                <span class="uc-salon">📍 Chelsea Park, 116 Trung Kính</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">dạ thứ 2 7h em qua bảo hành chị nha</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_đã book đc lịch bảo hành cho khách</span></div><div class="cskh-row"><span class="cskh-label">Lịch book:</span><span class="cskh-book">19h ngày 29/06/2026</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Anh Kiệt</div>
+                <span class="nhom-badge sm">C12W</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0827288882</span>
+                <span class="uc-salon">📍 168 NVC</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">không có cần chỉnh gì đâu, sang tuần anh cắt anh sẽ quay lại</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Anh Hiếu</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0346637567</span>
+                <span class="uc-salon">📍 345 Nguyễn Văn Linh</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">khách bảo chưa sắp xếp được thời gian, khi nào rảnh qua sẽ gọi lại</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">CHIẾN</div>
+                <span class="nhom-badge sm">QBQ</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0966944254</span>
+                <span class="uc-salon">📍 99 Tân Sơn Nhì</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">A Dũng</div>
+                <span class="nhom-badge sm">QBQ</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0777161819</span>
+                <span class="uc-salon">📍 99 Tân Sơn Nhì</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">bé tài</div>
+                <span class="nhom-badge sm">QBQ</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0372755446</span>
+                <span class="uc-salon">📍 99 Tân Sơn Nhì</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">mẹ bé nghe máy báo cháu bảo k muốn qua nữa để chị hỏi lại cháu xem</span></div></div>
+            </div></div><div class="urg-day-header">Phản hồi 29/06/2026 — 14 khách</div><div class="urg-grid">
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Nam</div>
+                <span class="nhom-badge sm">C12W</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0917200000</span>
+                <span class="uc-salon">📍 130 Xô Viết Nghệ Tĩnh</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Nguyên</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0935727210</span>
+                <span class="uc-salon">📍 312 Lê Văn Sỹ</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">dạ thôi ạ, cắt ngắn quá ko sửa đc đâu ạ</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Vũ</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0924439972</span>
+                <span class="uc-salon">📍 90 Nguyễn Hoàng</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">sang</div>
+                <span class="nhom-badge sm">QBQ</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0918732990</span>
+                <span class="uc-salon">📍 8 Châu Văn Liêm</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">1 2 hôm nữa anh qua</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Mạnh</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0392180768</span>
+                <span class="uc-salon">📍 10 Trần Phú</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">khách này không cắt tóc mà khách lấy ráy tai bị chảy máu</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Ernest</div>
+                <span class="nhom-badge sm">QBQ</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0913869212</span>
+                <span class="uc-salon">📍 406 Thống Nhất Mới</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">HIẾU</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0898155023</span>
+                <span class="uc-salon">📍 1180 Quang Trung</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">Tay nghề Thái độ phục vụ của bạn lấy ráy tai</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Kháng</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0334725019</span>
+                <span class="uc-salon">📍 362 Ngô Gia Tự</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">khi nào qua được anh gọi nhé</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">HÒA</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0931324455</span>
+                <span class="uc-salon">📍 255 Nguyễn An Ninh</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">ủa đâu có đâu, anh hài lòng rồi em</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Anh Tùng</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0903097509</span>
+                <span class="uc-salon">📍 68 Nguyễn Trãi</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">ok anh đang đi làm rồi, khi nào rảnh anh chạy qua</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Đức Dũng</div>
+                <span class="nhom-badge sm">KM</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0334637236</span>
+                <span class="uc-salon">📍 362 Ngô Gia Tự</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Tắt ngang/ từ chối hỗ trợ</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">A Tâm</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0387088182</span>
+                <span class="uc-salon">📍 420 Huỳnh Tấn Phát</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">chiều nay qua</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_đã book đc lịch bảo hành cho khách</span></div><div class="cskh-row"><span class="cskh-label">Lịch book:</span><span class="cskh-book">14h 30/6/2026</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">dương</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0939877051</span>
+                <span class="uc-salon">📍 113 Trần Hưng Đạo</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">chắc khoảng trong tuần này, a chưa biết giờ</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Hoàng</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0961580543</span>
+                <span class="uc-salon">📍 4 Lê Quang Đạo</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">7h tối ngày mai ạ</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_đã book đc lịch bảo hành cho khách</span></div><div class="cskh-row"><span class="cskh-label">Lịch book:</span><span class="cskh-book">19h 2/7/2026</span></div></div>
+            </div></div><div class="urg-day-header">Phản hồi 30/06/2026 — 8 khách</div><div class="urg-grid">
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Minh Điển</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0983685686</span>
+                <span class="uc-salon">📍 90 Nguyễn Hoàng</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Trùng sdt</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Dương</div>
+                <span class="nhom-badge sm">C12W</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0825788619</span>
+                <span class="uc-salon">📍 406 Thống Nhất Mới</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">em đang đi công tác rồi, công tác ở Đà Nẵng, em chưa sắp xếp thời gian được tại em đang trên núi, trên Bà Nà Hill á</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card urgent">
+              <div class="uc-top">
+                <div class="uc-name">Văn</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0328132792</span>
+                <span class="uc-salon">📍 362 Ngô Gia Tự</span>
+              </div>
+              <div class="uc-btn" style="background:#FEE2E2;color:#DC2626">
+                Tóc có vấn đề rõ, cần sửa gấp
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Trùng sdt</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">cái đấy mình ấn nhầm đấy, tóc không có vấn đề gì</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách báo k cần qua bảo hành</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">A Bách</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0974848777</span>
+                <span class="uc-salon">📍 14 Lĩnh Nam</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Không liên hệ đc l3_Nhắn zalo</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Bé coca</div>
+                <span class="nhom-badge sm">?</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0903150759</span>
+                <span class="uc-salon">📍 575 Âu Cơ</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-miss">📵 Trùng sdt</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">chắc khoảng thứ 5, thứ 6 gì đó, bé đi cùng ba, có gì c gọi bên em nha</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">anh tú</div>
+                <span class="nhom-badge sm">C12W</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0349998923</span>
+                <span class="uc-salon">📍 1371 Phạm Văn Thuận</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">khoảng cuối tuần em qua</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_đã book đc lịch bảo hành cho khách</span></div><div class="cskh-row"><span class="cskh-label">Lịch book:</span><span class="cskh-book">16h20 4/7</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Anh Giang</div>
+                <span class="nhom-badge sm">KM</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0399353085</span>
+                <span class="uc-salon">📍 13 Bình Hòa 2</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">em cũng chưa biết hôm nào qua được tại đang trong giờ làm việc á</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_nhưng chưa chốt đc lich</span></div></div>
+            </div>
+            <div class="urg-card warn">
+              <div class="uc-top">
+                <div class="uc-name">Tuyến</div>
+                <span class="nhom-badge sm">QTT</span>
+              </div>
+              <div class="uc-info">
+                <span class="uc-sdt">0967025852</span>
+                <span class="uc-salon">📍 382 Nguyễn Trãi</span>
+              </div>
+              <div class="uc-btn" style="background:#FEF3C7;color:#EA580C">
+                Anh muốn chỉnh thêm cho vừa ý
+              </div>
+              <div class="uc-cskh"><div class="cskh-row"><span class="cskh-label">CSKH:</span><span class="cskh-ok">✅ Đã liên hệ được - nói chuyện xong</span></div><div class="cskh-row"><span class="cskh-label">Chi tiết:</span><span class="cskh-detail">tầm trưa, chiều mai mình qua</span></div><div class="cskh-row"><span class="cskh-label">Kết quả:</span><span class="cskh-detail">Khách đồng ý qua bảo hành_đã book đc lịch bảo hành cho khách</span></div><div class="cskh-row"><span class="cskh-label">Lịch book:</span><span class="cskh-book">17h20 1/7</span></div></div>
+            </div></div>
+</div>
+
+<!-- THEO NHÓM KHÁCH -->
+<div class="section">
+  <div class="section-title">👥 Theo Nhóm Khách</div>
+  <div class="note-box">Nhóm Ngày 27 không có thông tin nhóm (file _Temp thiếu cột NhomKhach) — được tính vào "Không xác định".</div>
+  <table class="nhom-table">
+    <thead>
+      <tr>
+        <th>Nhóm</th><th>Tên nhóm</th>
+        <th class="num-col">Tổng PH</th>
+        <th class="num-col">Tóc ổn</th>
+        <th class="num-col">Theo dõi</th>
+        <th class="num-col">Tạo kiểu</th>
+        <th class="num-col">Cần xử lý</th>
+        <th class="num-col">% Hài lòng</th>
+        <th class="num-col">% Xử lý</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td><span class="nhom-badge">QTT</span></td>
+          <td class="nhom-name">Quay Trở Lại</td>
+          <td class="num-col">273</td>
+          <td class="num-col green-text">235</td>
+          <td class="num-col">13</td>
+          <td class="num-col">13</td>
+          <td class="num-col ">12</td>
+          <td class="num-col">86.1%</td>
+          <td class="num-col ">4.4%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">KM</span></td>
+          <td class="nhom-name">Khách Mới</td>
+          <td class="num-col">66</td>
+          <td class="num-col green-text">45</td>
+          <td class="num-col">6</td>
+          <td class="num-col">13</td>
+          <td class="num-col ">2</td>
+          <td class="num-col">68.2%</td>
+          <td class="num-col ">3.0%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">C12W</span></td>
+          <td class="nhom-name">Cắt Trong 1-2 Tuần</td>
+          <td class="num-col">55</td>
+          <td class="num-col green-text">40</td>
+          <td class="num-col">6</td>
+          <td class="num-col">4</td>
+          <td class="num-col warn-text">5</td>
+          <td class="num-col">72.7%</td>
+          <td class="num-col warn-text">9.1%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">QBQ</span></td>
+          <td class="nhom-name">Quay Bỏ Qua</td>
+          <td class="num-col">27</td>
+          <td class="num-col green-text">21</td>
+          <td class="num-col">1</td>
+          <td class="num-col">0</td>
+          <td class="num-col red-text">5</td>
+          <td class="num-col">77.8%</td>
+          <td class="num-col red-text">18.5%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">MQTT</span></td>
+          <td class="nhom-name">Mới Quay Trở Lại</td>
+          <td class="num-col">37</td>
+          <td class="num-col green-text">33</td>
+          <td class="num-col">1</td>
+          <td class="num-col">2</td>
+          <td class="num-col ">1</td>
+          <td class="num-col">89.2%</td>
+          <td class="num-col ">2.7%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">F2TT</span></td>
+          <td class="nhom-name">Khách F2 Trở Lại</td>
+          <td class="num-col">8</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col">0</td>
+          <td class="num-col">1</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">87.5%</td>
+          <td class="num-col ">0.0%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">MQBQ</span></td>
+          <td class="nhom-name">Mới Quay Bỏ Qua</td>
+          <td class="num-col">4</td>
+          <td class="num-col green-text">3</td>
+          <td class="num-col">1</td>
+          <td class="num-col">0</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">75.0%</td>
+          <td class="num-col ">0.0%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">F2BQ</span></td>
+          <td class="nhom-name">Khách F2 Bỏ Qua</td>
+          <td class="num-col">2</td>
+          <td class="num-col green-text">2</td>
+          <td class="num-col">0</td>
+          <td class="num-col">0</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">100.0%</td>
+          <td class="num-col ">0.0%</td>
+        </tr>
+        <tr>
+          <td><span class="nhom-badge">?</span></td>
+          <td class="nhom-name">Không xác định</td>
+          <td class="num-col">179</td>
+          <td class="num-col green-text">144</td>
+          <td class="num-col">13</td>
+          <td class="num-col">14</td>
+          <td class="num-col ">8</td>
+          <td class="num-col">80.4%</td>
+          <td class="num-col ">4.5%</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- THEO SALON (TOP 25) -->
+<div class="section">
+  <div class="section-title">🏪 Theo Salon <span class="count" style="background:#F0FDF4;color:#166534">Top 25 theo lượng phản hồi</span></div>
+  <div style="overflow-x:auto">
+  <table class="salon-table">
+    <thead>
+      <tr>
+        <th class="num-col">#</th>
+        <th>Salon</th>
+        <th class="num-col">Phản hồi</th>
+        <th class="num-col">Tóc ổn</th>
+        <th class="num-col">Cần xử lý</th>
+        <th class="num-col">% Hài lòng</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td class="num-col rank-col">1</td>
+          <td>103 Trần Não</td>
+          <td class="num-col">18</td>
+          <td class="num-col green-text">12</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">66.7%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">2</td>
+          <td>145 Tô Hiến Thành</td>
+          <td class="num-col">15</td>
+          <td class="num-col green-text">14</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">93.3%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">3</td>
+          <td>575 Âu Cơ</td>
+          <td class="num-col">15</td>
+          <td class="num-col green-text">14</td>
+          <td class="num-col warn-text">1</td>
+          <td class="num-col">93.3%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">4</td>
+          <td>25 Tôn Đản</td>
+          <td class="num-col">14</td>
+          <td class="num-col green-text">13</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">92.9%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">5</td>
+          <td>109 Trần Quốc Hoàn</td>
+          <td class="num-col">13</td>
+          <td class="num-col green-text">12</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">92.3%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">6</td>
+          <td>927  Hậu Giang</td>
+          <td class="num-col">13</td>
+          <td class="num-col green-text">12</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">92.3%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">7</td>
+          <td>420 Huỳnh Tấn Phát</td>
+          <td class="num-col">13</td>
+          <td class="num-col green-text">8</td>
+          <td class="num-col warn-text">1</td>
+          <td class="num-col">61.5%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">8</td>
+          <td>168 Nguyễn Văn Cừ</td>
+          <td class="num-col">12</td>
+          <td class="num-col green-text">11</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">91.7%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">9</td>
+          <td>362 Ngô Gia Tự</td>
+          <td class="num-col">12</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col red-text">3</td>
+          <td class="num-col">58.3%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">10</td>
+          <td>186 Đinh Tiên Hoàng</td>
+          <td class="num-col">11</td>
+          <td class="num-col green-text">11</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">100.0%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">11</td>
+          <td>237 Nguyễn Thị Thập</td>
+          <td class="num-col">11</td>
+          <td class="num-col green-text">10</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">90.9%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">12</td>
+          <td>8 Châu Văn Liêm</td>
+          <td class="num-col">11</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col warn-text">1</td>
+          <td class="num-col">63.6%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">13</td>
+          <td>99 Tân Sơn Nhì</td>
+          <td class="num-col">11</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col red-text">4</td>
+          <td class="num-col">63.6%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">14</td>
+          <td>504 đường 30 Tháng 4</td>
+          <td class="num-col">10</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">70.0%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">15</td>
+          <td>12 Lê Đức Thọ</td>
+          <td class="num-col">10</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">70.0%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">16</td>
+          <td>202 Đội Cấn</td>
+          <td class="num-col">10</td>
+          <td class="num-col green-text">9</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">90.0%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">17</td>
+          <td>312 Lê Văn Sỹ</td>
+          <td class="num-col">10</td>
+          <td class="num-col green-text">9</td>
+          <td class="num-col warn-text">1</td>
+          <td class="num-col">90.0%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">18</td>
+          <td>32 Nguyễn Ảnh Thủ</td>
+          <td class="num-col">10</td>
+          <td class="num-col green-text">6</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">60.0%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">19</td>
+          <td>708 Lê Trọng Tấn</td>
+          <td class="num-col">9</td>
+          <td class="num-col green-text">6</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">66.7%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">20</td>
+          <td>382 Nguyễn Trãi</td>
+          <td class="num-col">9</td>
+          <td class="num-col green-text">8</td>
+          <td class="num-col warn-text">1</td>
+          <td class="num-col">88.9%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">21</td>
+          <td>483 Thống Nhất</td>
+          <td class="num-col">9</td>
+          <td class="num-col green-text">9</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">100.0%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">22</td>
+          <td>255 Nguyễn An Ninh</td>
+          <td class="num-col">9</td>
+          <td class="num-col green-text">8</td>
+          <td class="num-col warn-text">1</td>
+          <td class="num-col">88.9%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">23</td>
+          <td>76 Phan Văn Hớn</td>
+          <td class="num-col">8</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">87.5%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">24</td>
+          <td>236 Dương Bá Trạc</td>
+          <td class="num-col">8</td>
+          <td class="num-col green-text">7</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">87.5%</td>
+        </tr>
+        <tr>
+          <td class="num-col rank-col">25</td>
+          <td>344 Cách Mạng Tháng 8</td>
+          <td class="num-col">8</td>
+          <td class="num-col green-text">8</td>
+          <td class="num-col ">0</td>
+          <td class="num-col">100.0%</td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+</div>
+<div class="footer">30Shine · Báo cáo tự động từ dữ liệu CALLBACK &amp; Map SDT · 01/07/2026</div>
